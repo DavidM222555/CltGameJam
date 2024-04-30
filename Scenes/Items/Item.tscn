@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://b5y82usp01hcf"]
+
+[ext_resource type="Script" path="res://Scripts/Items/Item.cs" id="1_2ralu"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_w6oa6"]
+radius = 38.0132
+
+[node name="Item" type="Node2D"]
+script = ExtResource("1_2ralu")
+
+[node name="PickupRadius" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PickupRadius"]
+shape = SubResource("CircleShape2D_w6oa6")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+
+[connection signal="body_entered" from="PickupRadius" to="." method="OnPickupRadiusEntered"]
+[connection signal="body_exited" from="PickupRadius" to="." method="OnPickupRadiusExited"]

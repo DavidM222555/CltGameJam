@@ -1,0 +1,9 @@
+# Godot 4+ specific ignores
+.godot/
+*.dll
+*.pck
+*.import
+createdump.exe
+*.pdb
+*.cfg
+*.otf

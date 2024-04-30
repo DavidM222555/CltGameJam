@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://cij34fkomiqnl"]
+
+[ext_resource type="PackedScene" uid="uid://0j58tw8cv0x1" path="res://Scenes/Items/Weapons/Weapon.tscn" id="1_cqy46"]
+[ext_resource type="Script" path="res://Scripts/Items/Weapons/StarterSword.cs" id="2_qjd3t"]
+
+[node name="StarterSword" instance=ExtResource("1_cqy46")]
+script = ExtResource("2_qjd3t")
+
+[node name="Label" parent="." index="4"]
+offset_left = -65.0
+offset_top = 31.0
+offset_right = 66.0
+offset_bottom = 48.0

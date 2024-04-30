@@ -1,0 +1,202 @@
+[gd_scene load_steps=16 format=3 uid="uid://cs207vvw0l1m"]
+
+[ext_resource type="Texture2D" uid="uid://bygmee4ogoih5" path="res://Art/gold_pile_1.png" id="1_esu6b"]
+[ext_resource type="Script" path="res://Scripts/UI/UI.cs" id="1_p7663"]
+[ext_resource type="Script" path="res://Scripts/UI/Health.cs" id="1_tiy3c"]
+[ext_resource type="Script" path="res://Scripts/UI/Stamina.cs" id="2_2gqyo"]
+[ext_resource type="Script" path="res://Scripts/UI/Mana.cs" id="3_v0xub"]
+[ext_resource type="Script" path="res://Scripts/UI/GoldAmount.cs" id="4_gqvgp"]
+[ext_resource type="Texture2D" uid="uid://cti1hi23n1d7s" path="res://Art/CltGameJamMenuItem.png" id="7_r8mjx"]
+[ext_resource type="Texture2D" uid="uid://chcjuvkxlrif7" path="res://Art/shirt_white_3.png" id="8_1y3k4"]
+[ext_resource type="Script" path="res://Scripts/Inventory/RightWeapon.cs" id="8_euqlg"]
+[ext_resource type="Texture2D" uid="uid://40rbfkdudahs" path="res://Art/pants_short_gray.png" id="10_d77gd"]
+[ext_resource type="Texture2D" uid="uid://dyu5ga0hiulsr" path="res://Art/middle_ybrown.png" id="11_cvkhw"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5xmre"]
+bg_color = Color(0.870588, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_j5vpd"]
+bg_color = Color(0, 0.807843, 0.0156863, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sojsr"]
+bg_color = Color(0.0235294, 0.258824, 1, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_qe1bb"]
+font_size = 42
+
+[node name="UI" type="CanvasLayer"]
+script = ExtResource("1_p7663")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+
+[node name="HealthAndEnergyBars" type="MarginContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.0015528
+anchor_right = 0.326106
+anchor_bottom = 0.175466
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 10
+metadata/_edit_use_anchors_ = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/HealthAndEnergyBars"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Health" type="ProgressBar" parent="Control/HealthAndEnergyBars/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+theme_override_styles/fill = SubResource("StyleBoxFlat_5xmre")
+value = 100.0
+show_percentage = false
+script = ExtResource("1_tiy3c")
+
+[node name="Stamina" type="ProgressBar" parent="Control/HealthAndEnergyBars/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 0
+theme_override_styles/fill = SubResource("StyleBoxFlat_j5vpd")
+value = 100.0
+show_percentage = false
+script = ExtResource("2_2gqyo")
+
+[node name="Mana" type="ProgressBar" parent="Control/HealthAndEnergyBars/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+theme_override_styles/fill = SubResource("StyleBoxFlat_sojsr")
+value = 100.0
+show_percentage = false
+script = ExtResource("3_v0xub")
+
+[node name="MarginContainer2" type="MarginContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.77797
+anchor_right = 0.999413
+anchor_bottom = 0.0976813
+offset_left = -54.2214
+offset_right = -0.32373
+offset_bottom = 39.7025
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.932805, 1.20716)
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/MarginContainer2"]
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_constants/separation = 11
+
+[node name="GoldAmount" type="Label" parent="Control/MarginContainer2/HBoxContainer"]
+unique_name_in_owner = true
+layout_direction = 3
+layout_mode = 2
+theme_override_font_sizes/font_size = 110
+text = "0
+"
+label_settings = SubResource("LabelSettings_qe1bb")
+max_lines_visible = 1
+script = ExtResource("4_gqvgp")
+
+[node name="GoldTexture" type="TextureRect" parent="Control/MarginContainer2/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(53, 64)
+layout_mode = 2
+texture = ExtResource("1_esu6b")
+expand_mode = 2
+
+[node name="HeadItem" type="TextureRect" parent="Control"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 91.0
+offset_top = 114.0
+offset_right = 146.0
+offset_bottom = 163.0
+texture = ExtResource("7_r8mjx")
+
+[node name="HeadItemSprite" type="Sprite2D" parent="Control/HeadItem"]
+unique_name_in_owner = true
+z_index = 1
+position = Vector2(27, 24)
+scale = Vector2(1.26562, 1.25)
+
+[node name="ChestItem" type="TextureRect" parent="Control"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 91.0
+offset_top = 183.0
+offset_right = 146.0
+offset_bottom = 232.0
+texture = ExtResource("7_r8mjx")
+
+[node name="ChestItemSprite" type="Sprite2D" parent="Control/ChestItem"]
+unique_name_in_owner = true
+position = Vector2(27, 29)
+scale = Vector2(1.875, 1.9375)
+texture = ExtResource("8_1y3k4")
+
+[node name="RightWeapon" type="TextureRect" parent="Control"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 161.0
+offset_top = 183.0
+offset_right = 216.0
+offset_bottom = 232.0
+texture = ExtResource("7_r8mjx")
+script = ExtResource("8_euqlg")
+
+[node name="RightWeaponSprite" type="Sprite2D" parent="Control/RightWeapon"]
+unique_name_in_owner = true
+position = Vector2(28, 23)
+
+[node name="LeftWeapon" type="TextureRect" parent="Control"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 20.0
+offset_top = 183.0
+offset_right = 75.0
+offset_bottom = 232.0
+texture = ExtResource("7_r8mjx")
+
+[node name="LeftWeaponSprite" type="Sprite2D" parent="Control/LeftWeapon"]
+unique_name_in_owner = true
+position = Vector2(27, 23)
+
+[node name="PantItem" type="TextureRect" parent="Control"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 91.0
+offset_top = 250.0
+offset_right = 146.0
+offset_bottom = 299.0
+texture = ExtResource("7_r8mjx")
+
+[node name="PantItemSprite" type="Sprite2D" parent="Control/PantItem"]
+unique_name_in_owner = true
+position = Vector2(27, 13)
+scale = Vector2(2.781, 3.343)
+texture = ExtResource("10_d77gd")
+
+[node name="ShoeItem" type="TextureRect" parent="Control"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 91.0
+offset_top = 316.0
+offset_right = 146.0
+offset_bottom = 365.0
+texture = ExtResource("7_r8mjx")
+
+[node name="Sprite2D" type="Sprite2D" parent="Control/ShoeItem"]
+position = Vector2(27, -5.72205e-06)
+scale = Vector2(2.203, 2.069)
+texture = ExtResource("11_cvkhw")

@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://dpepiteiv1ex1"]
+
+[ext_resource type="PackedScene" uid="uid://by30oer5r3r22" path="res://Scenes/Enemies/Enemy.tscn" id="1_xosf5"]
+[ext_resource type="Resource" uid="uid://c01mtu8u1ipri" path="res://Resources/Units/Enemies/ZombieCrab.tres" id="2_8venr"]
+[ext_resource type="Texture2D" uid="uid://dbrdd4dqujpap" path="res://Art/zombie_crab.png" id="2_y8r54"]
+
+[node name="ZombieCrab" instance=ExtResource("1_xosf5")]
+scale = Vector2(-1, 1)
+Stats = ExtResource("2_8venr")
+
+[node name="Sprite2D" parent="." index="1"]
+texture = ExtResource("2_y8r54")
+
+[node name="CollisionBox" parent="." index="2"]
+position = Vector2(0.5, -2)
+
+[node name="CollisionShape2D" parent="DetectionBoxComponent" index="0"]
+position = Vector2(4, 1)
+
+[node name="CollisionShape2D" parent="HitboxComponent" index="0"]
+position = Vector2(-1, 9)
+
+[editable path="HurtboxComponent"]

@@ -1,0 +1,71 @@
+[gd_scene load_steps=9 format=3 uid="uid://by30oer5r3r22"]
+
+[ext_resource type="Script" path="res://Scripts/Enemy.cs" id="1_ov2rs"]
+[ext_resource type="PackedScene" uid="uid://5spa173oqnsr" path="res://Scenes/Components/HurtboxComponent.tscn" id="2_7ngri"]
+[ext_resource type="Script" path="res://Scripts/DetectionBoxComponent.cs" id="3_g380u"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tvf50"]
+size = Vector2(13, 6)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5eusj"]
+size = Vector2(205, 102)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_g7ski"]
+radius = 4.0
+height = 32.0
+
+[sub_resource type="Theme" id="Theme_6k44r"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pcuqy"]
+bg_color = Color(0, 1, 0, 1)
+
+[node name="Enemy" type="CharacterBody2D"]
+z_index = 1
+script = ExtResource("1_ov2rs")
+
+[node name="HurtboxComponent" parent="." instance=ExtResource("2_7ngri")]
+
+[node name="CollisionShape2D" parent="HurtboxComponent" index="0"]
+debug_color = Color(0.227451, 0.635294, 0.203922, 0.419608)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+
+[node name="CollisionBox" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_tvf50")
+debug_color = Color(0.611765, 0.537255, 0.0235294, 0.870588)
+
+[node name="DetectionBoxComponent" type="Area2D" parent="."]
+script = ExtResource("3_g380u")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionBoxComponent"]
+shape = SubResource("RectangleShape2D_5eusj")
+debug_color = Color(0.929412, 0.117647, 0.588235, 0.560784)
+
+[node name="AttackWindup" type="Timer" parent="."]
+
+[node name="HitboxComponent" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
+rotation = -1.5708
+shape = SubResource("CapsuleShape2D_g7ski")
+debug_color = Color(0, 0.623529, 0.537255, 0.709804)
+
+[node name="EnemyHealthBar" type="ProgressBar" parent="."]
+top_level = true
+offset_left = -12.0
+offset_top = 22.0
+offset_right = 39.0
+offset_bottom = 29.0
+scale = Vector2(0.506584, 0.531067)
+theme = SubResource("Theme_6k44r")
+theme_override_styles/fill = SubResource("StyleBoxFlat_pcuqy")
+value = 100.0
+show_percentage = false
+
+[connection signal="body_entered" from="DetectionBoxComponent" to="." method="OnDetectionBoxEntered"]
+[connection signal="timeout" from="AttackWindup" to="." method="OnAttackWindupTimeout"]
+[connection signal="area_entered" from="HitboxComponent" to="." method="OnHitboxEntered"]
+[connection signal="area_exited" from="HitboxComponent" to="." method="OnHitboxExited"]
+[connection signal="body_entered" from="HitboxComponent" to="." method="OnHitboxEntered"]
+
+[editable path="HurtboxComponent"]

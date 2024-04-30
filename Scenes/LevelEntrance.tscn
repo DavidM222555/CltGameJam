@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://cck62mrs5ih40"]
+
+[ext_resource type="Script" path="res://Scripts/LevelEntrance.cs" id="1_0m230"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ouqjl"]
+size = Vector2(40, 55)
+
+[node name="LevelEntrance" type="Area2D"]
+script = ExtResource("1_0m230")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_ouqjl")
+
+[connection signal="body_entered" from="." to="." method="OnLevelEntranceEntered"]

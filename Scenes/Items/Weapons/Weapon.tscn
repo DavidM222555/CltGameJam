@@ -1,0 +1,88 @@
+[gd_scene load_steps=8 format=3 uid="uid://0j58tw8cv0x1"]
+
+[ext_resource type="Texture2D" uid="uid://d0g1eldehfw68" path="res://Art/long_sword_1_new.png" id="1_6dwik"]
+[ext_resource type="Script" path="res://Scripts/Items/Weapons/Weapon.cs" id="1_fopu3"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_t3sa8"]
+radius = 3.60487
+height = 24.413
+
+[sub_resource type="Animation" id="Animation_hvicb"]
+resource_name = "MeleeAttack"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [-0.872665, 0.541052, 1.25489, 1.7558]
+}
+
+[sub_resource type="Animation" id="Animation_fujwt"]
+resource_name = "MeleeAttackBackward"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [-0.785398, -2.27591, -3.27773, -4.00553]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ypdba"]
+_data = {
+"MeleeAttack": SubResource("Animation_hvicb"),
+"MeleeAttackBackward": SubResource("Animation_fujwt")
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4kr4b"]
+radius = 60.4401
+
+[node name="Weapon" type="Node2D"]
+rotation = -4.00553
+script = ExtResource("1_fopu3")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(6.95933, -3.54511)
+scale = Vector2(1.0596, 0.604474)
+texture = ExtResource("1_6dwik")
+
+[node name="HitboxComponent" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
+position = Vector2(11.2925, -6.03982)
+rotation = 1.01229
+shape = SubResource("CapsuleShape2D_t3sa8")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_ypdba")
+}
+speed_scale = 3.0
+
+[node name="PickupRadius" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PickupRadius"]
+shape = SubResource("CircleShape2D_4kr4b")
+
+[node name="Label" type="Label" parent="."]
+top_level = true
+offset_left = -44.0
+offset_top = 27.0
+offset_right = 44.0
+offset_bottom = 39.0
+theme_override_font_sizes/font_size = 8
+text = "Press E to pickup item."
+
+[connection signal="body_entered" from="HitboxComponent" to="." method="OnHitboxCollided"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="OnAnimationFinished"]
+[connection signal="body_entered" from="PickupRadius" to="." method="OnPickupRadiusEntered"]
+[connection signal="body_exited" from="PickupRadius" to="." method="OnPickupRadiusExited"]

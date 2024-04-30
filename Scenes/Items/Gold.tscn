@@ -1,0 +1,11 @@
+[gd_scene load_steps=4 format=3 uid="uid://dyvfetn4lwvh7"]
+
+[ext_resource type="PackedScene" uid="uid://b5y82usp01hcf" path="res://Scenes/Items/Item.tscn" id="1_6652t"]
+[ext_resource type="Texture2D" uid="uid://bygmee4ogoih5" path="res://Art/gold_pile_1.png" id="2_2arjm"]
+[ext_resource type="Script" path="res://Scripts/Items/Gold.cs" id="2_fnppa"]
+
+[node name="Gold" instance=ExtResource("1_6652t")]
+script = ExtResource("2_fnppa")
+
+[node name="Sprite" parent="." index="1"]
+texture = ExtResource("2_2arjm")

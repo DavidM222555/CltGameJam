@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://x6jred2opmay"]
+
+[ext_resource type="PackedScene" uid="uid://0j58tw8cv0x1" path="res://Scenes/Items/Weapons/Weapon.tscn" id="1_5ctpo"]
+[ext_resource type="Texture2D" uid="uid://pcvqopdvl6qu" path="res://Art/battle_axe_1.png" id="2_d420s"]
+[ext_resource type="Script" path="res://Scripts/Items/Weapons/BattleAxe1.cs" id="2_fg2tv"]
+
+[node name="BattleAxe1" instance=ExtResource("1_5ctpo")]
+rotation = -0.785398
+script = ExtResource("2_fg2tv")
+AutoPickup = true
+
+[node name="Sprite2D" parent="." index="0"]
+texture = ExtResource("2_d420s")
+
+[node name="CollisionShape2D" parent="HitboxComponent" index="0"]
+position = Vector2(13.6899, -6.67741)
+rotation = 1.17635

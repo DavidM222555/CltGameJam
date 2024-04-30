@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://ci7ixyigpi7rn"]
+
+[ext_resource type="Script" path="res://Scripts/Projectiles/Projectile.cs" id="1_43xf2"]
+[ext_resource type="Texture2D" uid="uid://psyyob17en6a" path="res://Art/fire_vortex_3.png" id="1_uwbp0"]
+[ext_resource type="Resource" uid="uid://cpx0ovm5u0ndk" path="res://Resources/Projectiles/FireSpiral.tres" id="2_lkjaf"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_rmbej"]
+radius = 15.0
+
+[node name="Projectile" type="Node2D"]
+z_index = 2
+script = ExtResource("1_43xf2")
+Direction = Vector2(0, 1)
+Stats = ExtResource("2_lkjaf")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_uwbp0")
+
+[node name="Hitbox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2(-1, 0)
+shape = SubResource("CircleShape2D_rmbej")
+
+[connection signal="body_entered" from="Hitbox" to="." method="OnHitboxEntered"]

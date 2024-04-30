@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="EnemyResource" load_steps=2 format=3 uid="uid://djy4q4lxfusyc"]
+
+[ext_resource type="Script" path="res://Scripts/EnemyResource.cs" id="1_86tem"]
+
+[resource]
+script = ExtResource("1_86tem")
+Speed = 60.0
+HP = 100.0
+Attack = 15.0
+Defense = 0.0
+GoldValue = 5

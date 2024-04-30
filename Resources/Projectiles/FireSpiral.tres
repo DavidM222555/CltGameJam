@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="ProjectileResource" load_steps=2 format=3 uid="uid://cpx0ovm5u0ndk"]
+
+[ext_resource type="Script" path="res://Scripts/Projectiles/ProjectileResource.cs" id="1_3xdn8"]
+
+[resource]
+script = ExtResource("1_3xdn8")
+Speed = 25.0
+Damage = 25.0
+RotationSpeed = 3.0

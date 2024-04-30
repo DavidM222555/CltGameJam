@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://2eypk77h1if"]
+
+[ext_resource type="Script" path="res://Scripts/Projectiles/ProjectileSpawner.cs" id="1_4p8in"]
+[ext_resource type="PackedScene" uid="uid://ci7ixyigpi7rn" path="res://Scenes/Projectiles/Projectile.tscn" id="2_yrdrt"]
+
+[node name="ProjectileSpawner" type="Node2D"]
+script = ExtResource("1_4p8in")
+projectileScene = ExtResource("2_yrdrt")
+
+[node name="SpawnRate" type="Timer" parent="."]
+wait_time = 3.5
+
+[connection signal="timeout" from="SpawnRate" to="." method="OnSpawnRateTimeout"]
