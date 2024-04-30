@@ -10,3 +10,6 @@ Dungeon Adventurer was a game I made for a 48 hour game jam in my city. This pro
 - Implement player and enemy spellcasting.
 - Implement a more robust inventory system that includes potions and such.
 - More sophisticated enemy AI.
+
+## Gameplay
+https://github.com/DavidM222555/CltGameJam/assets/46248699/50c2dc94-957f-49e5-94f9-f6cbc660edff
